@@ -130,6 +130,10 @@ module OffsitePayments #:nodoc:
 
         ### ATM
 
+        # ATM 銀行碼
+        mapping :bank_code, 'BankCode'
+        # ATM 付款虛擬帳號
+        mapping :virtual_account, 'vAccount'
         # ATM 允許繳費有效天數
         mapping :expire_date, 'ExpireDate'
 
