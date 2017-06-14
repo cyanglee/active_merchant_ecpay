@@ -193,7 +193,7 @@ module OffsitePayments #:nodoc:
           @params['CVSAddress']
         end
 
-        def cvs_telephone
+        def cvs_phone
           @params['CVSTelephone']
         end
       end
