@@ -27,9 +27,12 @@ module OffsitePayments #:nodoc:
       PAYMENT_TYPE        = 'aio'
 
       mattr_accessor :service_url
+      mattr_accessor :logistics_url
       mattr_accessor :merchant_id
       mattr_accessor :hash_key
       mattr_accessor :hash_iv
+      mattr_accessor :logistics_hash_key
+      mattr_accessor :logistics_hash_iv
       mattr_accessor :debug
 
       def self.service_url
@@ -39,6 +42,18 @@ module OffsitePayments #:nodoc:
             'https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5'
           when :development, :test
             'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5'
+          else
+            raise StandardError, "Integration mode set to an invalid value: #{mode}"
+        end
+      end
+
+      def self.logistics_url
+        mode = ActiveMerchant::Billing::Base.mode
+        case mode
+          when :production
+            'https://logistics.ecpay.com.tw/Express/map'
+          when :development, :test
+            'https://logistics-stage.ecpay.com.tw/Express/map'
           else
             raise StandardError, "Integration mode set to an invalid value: #{mode}"
         end

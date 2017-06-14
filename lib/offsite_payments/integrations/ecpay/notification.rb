@@ -51,6 +51,22 @@ module OffsitePayments #:nodoc:
           @hash_iv || OffsitePayments::Integrations::Ecpay.hash_iv
         end
 
+        def logistics_hash_key(key)
+          @logistics_key = key
+        end
+
+        def logistics_hash_iv(iv)
+          @logistics_iv = iv
+        end
+
+        def logistics_merchant_hash_key
+          @logistics_key || OffsitePayments::Integrations::Ecpay.logistics_hash_key
+        end
+
+        def logistics_merchant_hash_iv
+          @logistics_iv || OffsitePayments::Integrations::Ecpay.logistics_hash_iv
+        end
+
         def checksum_ok?
           params_copy = @params.clone
 
@@ -158,6 +174,27 @@ module OffsitePayments #:nodoc:
 
         def barcode3
           @params['Barcode3']
+        end
+
+        # for CVS pick up
+        def logistics_sub_type
+          @params['LogisticsSubType']
+        end
+
+        def cvs_store_id
+          @params['CVSStoreID']
+        end
+
+        def cvs_store_name
+          @params['CVSStoreName']
+        end
+
+        def cvs_address
+          @params['CVSAddress']
+        end
+
+        def cvs_telephone
+          @params['CVSTelephone']
         end
       end
     end
