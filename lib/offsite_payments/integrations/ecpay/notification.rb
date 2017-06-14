@@ -181,11 +181,11 @@ module OffsitePayments #:nodoc:
           @params['LogisticsSubType']
         end
 
-        def cvs_store_id
+        def cvs_id
           @params['CVSStoreID']
         end
 
-        def cvs_store_name
+        def cvs_name
           @params['CVSStoreName']
         end
 
