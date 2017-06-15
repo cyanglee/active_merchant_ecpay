@@ -161,6 +161,14 @@ module OffsitePayments #:nodoc:
         mapping :is_collection, 'IsCollection'
         mapping :server_reply_url, 'ServerReplyURL'
         mapping :device, 'Device'
+        mapping :goods_amount, 'GoodsAmount'
+        mapping :sender_name, 'SenderName'
+        mapping :sender_phone, 'SenderPhone'
+        mapping :sender_cell_phone, 'SenderCellPhone'
+        mapping :receiver_name, 'ReceiverName'
+        mapping :receiver_phone, 'ReceiverPhone'
+        mapping :receiver_cell_phone, 'ReceiverCellPhone'
+        mapping :receiver_store_id, 'ReceiverStoreID'
 
         def initialize(order, account, options = {})
           super

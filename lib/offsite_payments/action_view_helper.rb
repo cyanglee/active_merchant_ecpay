@@ -99,6 +99,36 @@ module OffsitePayments #:nodoc:
       nil
     end
 
+    def logistics_service_for(order, account, options = {}, &proc)
+      raise ArgumentError, "Missing block" unless block_given?
+
+      integration_module = OffsitePayments::integration(options.delete(:service).to_s)
+      service_class = integration_module.const_get('Helper')
+
+      form_options = options.delete(:html) || {}
+      service = service_class.new(order, account, options)
+      form_options[:method] = service.form_method
+      result = []
+      service_url = integration_module.logistics_url
+      result << form_tag(service_url, form_options)
+
+      result << capture(service, &proc)
+
+      service.form_fields.each do |field, value|
+        result << hidden_field_tag(field, value)
+      end
+
+      service.raw_html_fields.each do |field, value|
+        result << "<input id=\"#{field}\" name=\"#{field}\" type=\"hidden\" value=\"#{value}\" />\n"
+      end
+
+      result << '</form>'
+      result= result.join("\n")
+
+      concat(result.respond_to?(:html_safe) ? result.html_safe : result)
+      nil
+    end
+
   end
 end
 

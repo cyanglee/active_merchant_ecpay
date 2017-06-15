@@ -196,6 +196,18 @@ module OffsitePayments #:nodoc:
         def cvs_phone
           @params['CVSTelephone']
         end
+
+        def all_pay_logistics_id
+          @params['AllPayLogisticsID']
+        end
+
+        def goods_amount
+          @params['GoodsAmount']
+        end
+
+        def update_status_date
+          @params['UpdateStatusDate']
+        end
       end
     end
   end
