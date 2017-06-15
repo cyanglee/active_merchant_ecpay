@@ -69,7 +69,7 @@ module OffsitePayments #:nodoc:
       nil
     end
 
-    def logistics_service_for(order, account, options = {}, &proc)
+    def map_service_for(order, account, options = {}, &proc)
       raise ArgumentError, "Missing block" unless block_given?
 
       integration_module = OffsitePayments::integration(options.delete(:service).to_s)
@@ -79,7 +79,7 @@ module OffsitePayments #:nodoc:
       service = service_class.new(order, account, options)
       form_options[:method] = service.form_method
       result = []
-      service_url = integration_module.logistics_url
+      service_url = integration_module.map_url
       result << form_tag(service_url, form_options)
 
       result << capture(service, &proc)

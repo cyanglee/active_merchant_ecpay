@@ -47,7 +47,7 @@ module OffsitePayments #:nodoc:
         end
       end
 
-      def self.logistics_url
+      def self.map_url
         mode = ActiveMerchant::Billing::Base.mode
         case mode
           when :production
