@@ -53,22 +53,6 @@ module OffsitePayments #:nodoc:
           @hash_iv || OffsitePayments::Integrations::Ecpay.hash_iv
         end
 
-        def logistics_hash_key(key)
-          @logistics_key = key
-        end
-
-        def logistics_hash_iv(iv)
-          @logistics_iv = iv
-        end
-
-        def logistics_merchant_hash_key
-          @logistics_key || OffsitePayments::Integrations::Ecpay.logistics_hash_key
-        end
-
-        def logistics_merchant_hash_iv
-          @logistics_iv || OffsitePayments::Integrations::Ecpay.logistics_hash_iv
-        end
-
         def checksum_ok?
           params_copy = @params.clone
 

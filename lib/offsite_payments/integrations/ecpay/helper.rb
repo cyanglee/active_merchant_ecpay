@@ -196,22 +196,6 @@ module OffsitePayments #:nodoc:
           @iv || OffsitePayments::Integrations::Ecpay.hash_iv
         end
 
-        def logistics_hash_key(key)
-          @logistics_key = key
-        end
-
-        def logistics_hash_iv(iv)
-          @logistics_iv = iv
-        end
-
-        def logistics_merchant_hash_key
-          @logistics_key || OffsitePayments::Integrations::Ecpay.logistics_hash_key
-        end
-
-        def logistics_merchant_hash_iv
-          @logistics_iv || OffsitePayments::Integrations::Ecpay.logistics_hash_iv
-        end
-
         def encrypted_data
 
           raw_data = @fields.sort.map{|field, value|
@@ -220,22 +204,6 @@ module OffsitePayments #:nodoc:
           }.join('&')
 
           hash_raw_data = "HashKey=#{merchant_hash_key}&#{raw_data}&HashIV=#{merchant_hash_iv}"
-          url_encode_data = self.class.url_encode(hash_raw_data)
-          url_encode_data.downcase!
-
-          binding.pry if OffsitePayments::Integrations::Ecpay.debug
-
-          add_field 'CheckMacValue', Digest::MD5.hexdigest(url_encode_data).upcase
-        end
-
-        def encrypted_logistics_data
-
-          raw_data = @fields.sort.map{|field, value|
-            # utf8, authenticity_token, commit are generated from form helper, needed to skip
-            "#{field}=#{value}" if field!='utf8' && field!='authenticity_token' && field!='commit'
-          }.join('&')
-
-          hash_raw_data = "HashKey=#{logistics_merchant_hash_key}&#{raw_data}&HashIV=#{logistics_merchant_hash_iv}"
           url_encode_data = self.class.url_encode(hash_raw_data)
           url_encode_data.downcase!
 
