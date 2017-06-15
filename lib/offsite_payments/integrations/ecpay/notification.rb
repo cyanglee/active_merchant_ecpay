@@ -30,6 +30,8 @@ module OffsitePayments #:nodoc:
             true
           when '800' #貨到付款訂單建立成功
             true
+          when '300' #物流訂單建立成功
+            true
           else
             false
           end
