@@ -48,6 +48,8 @@ module OffsitePayments #:nodoc:
       form_options = options.delete(:html) || {}
       service = service_class.new(order, account, options)
       form_options[:method] = service.form_method
+      form_options[:authenticity_token] = false
+      form_options[:enforce_utf8] = false
       result = []
       service_url = service.respond_to?(:credential_based_url) ? service.credential_based_url : integration_module.service_url
       result << form_tag(service_url, form_options)
@@ -78,6 +80,8 @@ module OffsitePayments #:nodoc:
       form_options = options.delete(:html) || {}
       service = service_class.new(order, account, options)
       form_options[:method] = service.form_method
+      form_options[:authenticity_token] = false
+      form_options[:enforce_utf8] = false
       result = []
       service_url = integration_module.map_url
       result << form_tag(service_url, form_options)
@@ -108,6 +112,8 @@ module OffsitePayments #:nodoc:
       form_options = options.delete(:html) || {}
       service = service_class.new(order, account, options)
       form_options[:method] = service.form_method
+      form_options[:authenticity_token] = false
+      form_options[:enforce_utf8] = false
       result = []
       service_url = integration_module.logistics_url
       result << form_tag(service_url, form_options)
