@@ -52,8 +52,9 @@ module OffsitePayments #:nodoc:
         mode = ActiveMerchant::Billing::Base.mode
         case mode
           when :production
-            'https://logistics.ecpay.com.tw/Express/map'
-          when :development, :test
+            #'https://logistics.ecpay.com.tw/Express/map'
+            'https://logistics-stage.ecpay.com.tw/Express/map'
+          when :development, :test, :staging
             'https://logistics-stage.ecpay.com.tw/Express/map'
           else
             raise StandardError, "Integration mode set to an invalid value: #{mode}"
@@ -64,8 +65,9 @@ module OffsitePayments #:nodoc:
         mode = ActiveMerchant::Billing::Base.mode
         case mode
           when :production
-            'https://logistics.ecpay.com.tw/Express/Create'
-          when :development, :test
+            #'https://logistics.ecpay.com.tw/Express/Create'
+            'https://logistics-stage.ecpay.com.tw/Express/Create'
+          when :development, :test, :staging
             'https://logistics-stage.ecpay.com.tw/Express/Create'
           else
             raise StandardError, "Integration mode set to an invalid value: #{mode}"
