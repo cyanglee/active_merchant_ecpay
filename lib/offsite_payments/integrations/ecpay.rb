@@ -52,8 +52,8 @@ module OffsitePayments #:nodoc:
         mode = ActiveMerchant::Billing::Base.mode
         case mode
           when :production
-            #'https://logistics.ecpay.com.tw/Express/map'
-            'https://logistics-stage.ecpay.com.tw/Express/map'
+            'https://logistics.ecpay.com.tw/Express/map'
+            # 'https://logistics-stage.ecpay.com.tw/Express/map'
           when :development, :test, :staging
             'https://logistics-stage.ecpay.com.tw/Express/map'
           else
@@ -65,8 +65,8 @@ module OffsitePayments #:nodoc:
         mode = ActiveMerchant::Billing::Base.mode
         case mode
           when :production
-            #'https://logistics.ecpay.com.tw/Express/Create'
-            'https://logistics-stage.ecpay.com.tw/Express/Create'
+            'https://logistics.ecpay.com.tw/Express/Create'
+            # 'https://logistics-stage.ecpay.com.tw/Express/Create'
           when :development, :test, :staging
             'https://logistics-stage.ecpay.com.tw/Express/Create'
           else
